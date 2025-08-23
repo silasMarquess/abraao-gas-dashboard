@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import AppSideBar from "./components/app-sidebar";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const popinsFont = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -23,11 +32,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="pt-br">
+      <body className={`${popinsFont.className} antialiased`}>
+        <SidebarProvider>
+          <AppSideBar />
+          <main>
+            <div className="flex flex-row h-10 p-3 w-screen justify-between border items-center">
+              <p className="font-semibold text-sm">Tela de Produtos</p>
+            </div>
+            <div className="flex flex-col w-full h-full justify-start items-center">
+              {children}
+            </div>
+          </main>
+        </SidebarProvider>
+        <Toaster />
       </body>
     </html>
   );
