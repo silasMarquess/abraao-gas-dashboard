@@ -15,8 +15,11 @@ import {
   ChartNoAxesCombinedIcon,
   Home,
   icons,
+  MapPinIcon,
+  ShoppingBasketIcon,
   StoreIcon,
   Upload,
+  Users2,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,27 +33,45 @@ const itemsMenu = [
   },
   {
     id: 2,
+    title: "Vendas",
+    url: "/salers",
+    icons: ShoppingBasketIcon,
+  },
+  {
+    id: 3,
     title: "Upload/Planilhas",
     url: "/upload",
     icons: Upload,
   },
   {
-    id: 3,
+    id: 4,
     title: "dashboard",
     url: "/dashboard",
     icons: ChartNoAxesCombinedIcon,
   },
   {
-    id: 4,
+    id: 5,
     title: "Nosso Produtos",
     url: "/product",
     icons: StoreIcon,
   },
   {
-    id: 5,
+    id: 6,
     title: "Entregadores",
     url: "/deliverys",
     icons: BoxesIcon,
+  },
+  {
+    id: 7,
+    title: "Clientes",
+    url: "/clients",
+    icons: Users2,
+  },
+  {
+    id: 8,
+    title: "Regiões",
+    url: "/regions",
+    icons: MapPinIcon,
   },
 ];
 

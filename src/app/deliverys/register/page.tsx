@@ -28,12 +28,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PatternFormat } from "react-number-format";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import { createNewDeliverys } from "@/actions/create-deliveryman";
+import { toast } from "sonner";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { formatToISO } from "@/helper/format-to-date";
 
-const deliveryCreateSchema = z.object({
+export const deliveryCreateSchema = z.object({
   fullName: z.string().min(1, "Nome completo é obrigatório"),
   dateIn: z.string().refine(
     (date) => {
-      console.log(date);
       const [day, month, year] = date.split("/").map(Number);
       const parsedDate = new Date(year, month - 1, day);
       return (
@@ -48,7 +51,7 @@ const deliveryCreateSchema = z.object({
     },
     { message: "Data de admissão inválida" }
   ),
-  dateBirth: z.string().refine(
+  birthDate: z.string().refine(
     (date) => {
       const [day, month, year] = date.split("/").map(Number);
       const parsedDate = new Date(year, month - 1, day);
@@ -67,26 +70,55 @@ const deliveryCreateSchema = z.object({
 });
 
 const DeliveryRegisterPage = () => {
+  const queryClient = useQueryClient();
+  const createDeliveryMutation = useMutation({
+    mutationFn: (values: z.infer<typeof deliveryCreateSchema>) =>
+      createNewDeliverys(values),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["get-all-delivery"] });
+      toast.success("Entregador cadastrado com sucesso!");
+      router.push("/deliverys");
+    },
+    onError: (error) => {
+      toast.error("Erro ao cadastrar entregador");
+      console.error("Error creating delivery:", error);
+    },
+  });
+
   const router = useRouter();
+
   const form = useForm<z.infer<typeof deliveryCreateSchema>>({
     resolver: zodResolver(deliveryCreateSchema),
     defaultValues: {
       fullName: "",
-      dateBirth: "",
+      birthDate: "",
       dateIn: undefined,
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof deliveryCreateSchema>) => {
-    console.log("Form submitted with data:", data);
-  };
+  // Função para converter dd/mm/yyyy para yyyy-mm-dd
+  function toISODate(dateStr: string) {
+    const [day, month, year] = dateStr.split("/");
+    if (!day || !month || !year) return "";
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 space-y-4">
       <h3 className="font-semibold text-2xl">Cadastrar Entregador</h3>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <Card className="flex flex-col items-center border w-[500px] h-auto p-2">
+        <form
+          onSubmit={form.handleSubmit((data) => {
+            const formattedData = {
+              ...data,
+              birthDate: formatToISO(data.birthDate),
+              dateIn: formatToISO(data.dateIn),
+            };
+            createDeliveryMutation.mutate(formattedData);
+          })}
+          className="space-y-8"
+        >
+          <Card className="flex flex-col items-center border w-[500px] h-auto py-4">
             <CardHeader className="flex flex-row w-full">
               <CardTitle className="flex flex-col w-full">
                 <div className="flex flex-row w-full justify-between items-center">
@@ -123,7 +155,7 @@ const DeliveryRegisterPage = () => {
 
               <FormField
                 control={form.control}
-                name="dateBirth"
+                name="birthDate"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Data de Nascimento</FormLabel>

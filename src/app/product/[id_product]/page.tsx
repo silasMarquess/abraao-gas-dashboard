@@ -1,10 +1,10 @@
 export interface ProductInfoPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id_product: string }>;
 }
 
 const ProductInfoPage = async ({ params }: ProductInfoPageProps) => {
-  const { slug } = await params;
-  return <div>Pagina do produtco: {slug}</div>;
+  const { id_product } = await params;
+  return <div>Pagina do produto: {id_product}</div>;
 };
 
 export default ProductInfoPage;

@@ -3,7 +3,10 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSideBar from "./components/app-sidebar";
+
 import { Toaster } from "sonner";
+import { QueryClientProvider } from "@tanstack/react-query";
+import ReactQueryProvider from "@/provider/react-query-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,13 +39,11 @@ export default function RootLayout({
       <body className={`${popinsFont.className} antialiased`}>
         <SidebarProvider>
           <AppSideBar />
-          <main>
-            <div className="flex flex-row h-10 p-3 w-screen justify-between border items-center">
+          <main className="w-screen h-screen">
+            <div className="flex flex-row h-10 p-3 w-full justify-between border items-center">
               <p className="font-semibold text-sm">Tela de Produtos</p>
             </div>
-            <div className="flex flex-col w-full h-full justify-start items-center">
-              {children}
-            </div>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
           </main>
         </SidebarProvider>
         <Toaster />
