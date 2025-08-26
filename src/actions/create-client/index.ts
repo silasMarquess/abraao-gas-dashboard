@@ -7,7 +7,7 @@ export const createNewClient = async (
   values: z.infer<typeof createClientSchema>
 ) => {
   try {
-    const response = await axiosInstance.post("/client", {
+    const response = await axiosInstance.post("/clients", {
       ...values,
     });
     console.log(response.data);

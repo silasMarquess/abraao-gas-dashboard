@@ -25,6 +25,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -45,6 +46,12 @@ const ClientRegisterPage = () => {
     queryKey: ["get-all-regions"],
     queryFn: getAllRegions,
   });
+
+  useEffect(() => {
+    if (id_region) {
+      form.reset({ ...form.getValues(), regionId: id_region });
+    }
+  }, [id_region]);
 
   const form = useForm<z.infer<typeof createClientSchema>>({
     resolver: zodResolver(createClientSchema),
