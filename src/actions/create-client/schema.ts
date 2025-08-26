@@ -8,4 +8,7 @@ export const createClientSchema = z.object({
   StockGaz: z.string().refine((val) => !isNaN(Number(val)), {
     message: "StockGaz deve ser um número",
   }),
+  regionId: z
+    .string({ required_error: "Região é obrigatória" })
+    .min(1, { message: "Região é obrigatória" }),
 });

@@ -41,7 +41,10 @@ const TableRegionRegisters = ({ regionList }: PageProps) => {
               <div className="flex flex-col items-center">
                 {" "}
                 {region.clients.length} Cadastrados
-                <AddButton key={region.id} url="/clients/register" />
+                <AddButton
+                  key={region.id}
+                  url={`/clients/register?id_region=${region.id}`}
+                />
               </div>
             </TableCell>
             <TableCell className="items-end flex flex-row justify-end">
