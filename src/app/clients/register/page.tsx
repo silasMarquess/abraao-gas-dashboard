@@ -27,6 +27,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const ClientRegisterPage = () => {
@@ -35,6 +36,15 @@ const ClientRegisterPage = () => {
   const createClientMutation = useMutation({
     mutationFn: async (data: z.infer<typeof createClientSchema>) => {
       return createNewClient(data);
+    },
+    onSuccess: () => {
+      toast.success("Cliente cadastrado com sucesso!");
+      router.push("/clients");
+    },
+
+    onError: (error) => {
+      toast.error("Erro ao cadastrar cliente");
+      console.error(error);
     },
   });
 

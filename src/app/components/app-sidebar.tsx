@@ -81,11 +81,11 @@ const AppSideBar = () => {
       <SidebarHeader className="flex flex-col items-center">
         <div>
           <Image
-            src={"/logo.jpg"}
+            src={"/logo.jpeg"}
             alt="logomarca da empresa"
-            width={120}
-            height={120}
-            className="rounded-2xl"
+            width={190}
+            height={190}
+            className="rounded-2xl h-auto"
           ></Image>
         </div>
       </SidebarHeader>
@@ -96,12 +96,15 @@ const AppSideBar = () => {
             <SidebarMenu>
               {itemsMenu.map((itemMenu) => (
                 <SidebarMenuItem key={itemMenu.id}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton
+                    asChild
+                    className="hover:bg-gray-200 rounded-md hover:text-primary"
+                  >
                     <Link
                       href={itemMenu.url}
-                      className="flex-row items-center flex gap-1.5"
+                      className="flex-row items-center flex gap-1.5 "
                     >
-                      <itemMenu.icons />
+                      <itemMenu.icons color="oklch(55.468% 0.19441 24.045)" />
                       <span>{itemMenu.title}</span>
                     </Link>
                   </SidebarMenuButton>

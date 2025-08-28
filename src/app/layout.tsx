@@ -7,6 +7,7 @@ import AppSideBar from "./components/app-sidebar";
 import { Toaster } from "sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import ReactQueryProvider from "@/provider/react-query-provider";
+import SheetSalerRegister from "./components/sheet-saler-register";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,10 +41,13 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSideBar />
           <main className="w-screen h-screen">
-            <div className="flex flex-row h-10 p-3 w-full justify-between border items-center">
-              <p className="font-semibold text-sm">Tela de Produtos</p>
-            </div>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <ReactQueryProvider>
+              <div className="flex flex-row h-12 p-3 w-full justify-between border items-center">
+                <p className="font-semibold text-sm">Tela de Produtos</p>
+                <SheetSalerRegister />
+              </div>
+              {children}
+            </ReactQueryProvider>
           </main>
         </SidebarProvider>
         <Toaster />

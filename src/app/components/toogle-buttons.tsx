@@ -10,10 +10,14 @@ export interface ToggleButtonProps {
   id_resources: string;
 }
 
-const ToggleButton = ({ onClickDelete, id_resources , url}: ToggleButtonProps) => {
+const ToggleButton = ({
+  onClickDelete,
+  id_resources,
+  url,
+}: ToggleButtonProps) => {
   const router = useRouter();
   return (
-    <div className="grid grid-cols-2 gap-1 items-right">
+    <div className="flex flex-row gap-1 items-center">
       <Button
         size={"icon"}
         variant={"ghost"}
