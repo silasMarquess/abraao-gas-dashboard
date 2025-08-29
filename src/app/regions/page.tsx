@@ -20,8 +20,8 @@ const RegionPage = () => {
   if (error) return <div>Error fetching regions</div>;
 
   return (
-    <div className="flex flex-col items-center justify-start w-full h-full p-5 bg-gray-200 space-y-2.5">
-      <div className="flex flex-col h-auto p-2  w-full items-center bg-white rounded-md shadow-md space-y-2">
+    <div className="flex flex-col items-center justify-start w-full h-full p-5 bg-gray-200 dark:bg-background space-y-2.5">
+      <div className="flex flex-col h-auto p-2  w-full items-center bg-white dark:bg-background rounded-md shadow-md space-y-2">
         <div className="w-full flex flex-row justify-between">
           <h3 className="font-semibold text-xl">Lista de Regiões</h3>
           <Button className="font-light rounded-full" asChild>

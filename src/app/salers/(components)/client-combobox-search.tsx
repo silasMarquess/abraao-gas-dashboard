@@ -25,10 +25,9 @@ import { createSalerSchema } from "@/actions/create-new-saler/schema";
 
 export interface pageProps {
   clientList: Array<getAllClientsSchema> | undefined;
-  fieldValue: ControllerRenderProps<
-    z.infer<typeof createSalerSchema>,
-    "id_client"
-  >;
+  fieldValue:
+    | ControllerRenderProps<z.infer<typeof createSalerSchema>, "id_client">
+    | typeof formCreateContract;
   form: UseFormReturn<
     z.infer<typeof createSalerSchema>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

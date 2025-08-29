@@ -12,7 +12,7 @@ const AddButton = ({ url }: ButtonPros) => {
   const router = useRouter();
   return (
     <Button
-      className="rounded-md bg-gray-200 w-full text-black"
+      className="rounded-md bg-gray-200  w-full dark:bg-primary"
       size={"sm"}
       onClick={() => router.push(url)}
     >

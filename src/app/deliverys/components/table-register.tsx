@@ -46,7 +46,11 @@ const DeliveryTableRegister = ({
             <TableCell>{formatToDateBR(delivery.dateIn)}</TableCell>
             <TableCell>{formatToDateBR(delivery.birthDate)}</TableCell>
             <TableCell>
-              <ToggleButton id_resources={delivery.id} url="/deliverys" />
+              <ToggleButton
+                id_resources={delivery.id}
+                url="/deliverys/details"
+                params={`id_deliveryman=${delivery.id}`}
+              />
             </TableCell>
           </TableRow>
         ))}

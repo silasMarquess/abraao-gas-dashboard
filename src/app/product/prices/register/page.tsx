@@ -70,7 +70,7 @@ const ProductPriceRegister = () => {
   });
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 space-y-4">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 dark:bg-background space-y-4">
       <h3 className="font-semibold text-2xl">Cadastrar Novas Variantes</h3>
       <Form {...form}>
         <form

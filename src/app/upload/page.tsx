@@ -51,7 +51,7 @@ const UploadPage = () => {
 
     try {
       const response = await axiosInstance.post("/upload", formData);
-      if (!(response.status===200 || response.status===201)) {
+      if (!(response.status === 200 || response.status === 201)) {
         throw new Error("Erro ao enviar arquivo");
       }
       toast.success("Arquivo enviado com sucesso");
@@ -63,7 +63,7 @@ const UploadPage = () => {
   };
 
   return (
-    <div className=" h-screen w-screen flex flex-col p-10 justify-start items-center bg-gray-100">
+    <div className=" h-screen w-screen flex flex-col p-10 justify-start items-center bg-gray-100 dark:bg-background">
       <Card className="flex w-[500px] h-[500px] flex-col  border">
         <CardHeader>
           <CardTitle>Upload de Planilhas</CardTitle>
@@ -73,7 +73,9 @@ const UploadPage = () => {
             {...getRootProps()}
             className={clsx(
               "flex flex-col items-center justify-center w-full h-full border-1 border-dashed rounded-2xl hover:border-primary",
-              isDragActive ? "bg-gray-400" : "bg-gray-100"
+              isDragActive
+                ? "bg-gray-400 dark:bg-background"
+                : "bg-gray-100 dark:bg-gray-800"
             )}
           >
             <Input {...getInputProps()}></Input>

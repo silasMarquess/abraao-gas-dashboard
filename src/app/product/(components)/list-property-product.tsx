@@ -22,7 +22,7 @@ const ListPropertyProduct = ({
   console.log(value);
   return (
     <div
-      className="flex flex-row p-0.5 rounded-md border w-auto justify-between items-center  mb-1 bg-gray-200
+      className="flex flex-row p-0.5 rounded-md border w-auto justify-between items-center  mb-1 bg-gray-200 dark:bg-gray-800
     "
     >
       <span className="font-light gap-1">

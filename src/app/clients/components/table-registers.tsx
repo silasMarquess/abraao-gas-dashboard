@@ -27,7 +27,6 @@ const TableClientRegisters = ({ registers }: TableRegistersProps) => {
         <TableRow>
           <TableHead>id</TableHead>
           <TableHead>Nome do Cliente</TableHead>
-          <TableHead>Estoque/GAZ</TableHead>
           <TableHead>Data de Cadastro</TableHead>
           <TableHead>Região</TableHead>
           <TableHead className="text-right">***</TableHead>
@@ -38,13 +37,13 @@ const TableClientRegisters = ({ registers }: TableRegistersProps) => {
           <TableRow key={client.id}>
             <TableCell className="font-medium">{index + 1}</TableCell>
             <TableCell>{client.fullName}</TableCell>
-            <TableCell>{client.stockGaz}</TableCell>
             <TableCell>{formatToDateBR(client.createdAt)}</TableCell>
             <TableCell>{client.region.description}</TableCell>
             <TableCell className="items-end flex flex-row justify-end">
               <ToggleButton
                 id_resources={client.region.id}
-                url={`/clients/${client.id}`}
+                url={`/clients/details/`}
+                params={`id_client=${client.id}`}
               />
             </TableCell>
           </TableRow>

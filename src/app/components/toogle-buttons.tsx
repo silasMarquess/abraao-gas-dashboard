@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 export interface ToggleButtonProps {
   onClickDelete?: () => void;
   url: string;
+  params?: string;
   id_resources: string;
 }
 
 const ToggleButton = ({
+  params,
   onClickDelete,
   id_resources,
   url,
@@ -21,7 +23,9 @@ const ToggleButton = ({
       <Button
         size={"icon"}
         variant={"ghost"}
-        onClick={() => router.push(`${url}/${id_resources}`)}
+        onClick={() =>
+          router.push(params ? `${url}/?${params}` : `${url}/${id_resources}`)
+        }
       >
         <InfoIcon />
       </Button>

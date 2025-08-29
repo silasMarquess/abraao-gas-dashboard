@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import ReactQueryProvider from "@/provider/react-query-provider";
 import SheetSalerRegister from "./components/sheet-saler-register";
+import ToogleThemeButton from "./components/toogle-theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +45,10 @@ export default function RootLayout({
             <ReactQueryProvider>
               <div className="flex flex-row h-12 p-3 w-full justify-between border items-center">
                 <p className="font-semibold text-sm">Tela de Produtos</p>
-                <SheetSalerRegister />
+                <div className="flex flex-row gap-2 justify-center items-center">
+                  <ToogleThemeButton />
+                  <SheetSalerRegister />
+                </div>
               </div>
               {children}
             </ReactQueryProvider>

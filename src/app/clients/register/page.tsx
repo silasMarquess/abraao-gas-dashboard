@@ -67,7 +67,6 @@ const ClientRegisterPage = () => {
     resolver: zodResolver(createClientSchema),
     defaultValues: {
       fullName: "",
-      StockGaz: "",
     },
   });
 
@@ -80,7 +79,7 @@ const ClientRegisterPage = () => {
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 space-y-4">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 dark:bg-background space-y-4">
       <h3 className="font-semibold text-2xl">Cadastrar Novo Cliente</h3>
       <Form {...form}>
         <form
@@ -145,23 +144,6 @@ const ClientRegisterPage = () => {
                         placeholder="exemplo: Silas Marques de Sousa"
                         {...field}
                       />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="StockGaz"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      Stock (obs: aplicar-se aos atacadistas. Clientes normais
-                      deve ser 0)
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder="exemplo: 100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
